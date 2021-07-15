@@ -24,7 +24,7 @@ WHERE ci.note LIKE '%(voice)%'
   <BatchSequence>
     <Batch>
       <Statements>
-        <StmtSimple StatementCompId="1" StatementEstRows="1" StatementId="1" StatementOptmLevel="FULL" StatementOptmEarlyAbortReason="TimeOut" CardinalityEstimationModelVersion="150" StatementSubTreeCost="15.5369" StatementText="&#13;&#10;SELECT MIN(chn.name) AS uncredited_voiced_character,&#13;&#10;       MIN(t.title) AS movie&#13;&#10;FROM imdb.dbo.char_name AS chn,&#13;&#10;     imdb.dbo.cast_info AS ci,&#13;&#10;     imdb.dbo.company_name AS cn,&#13;&#10;     imdb.dbo.company_type AS ct,&#13;&#10;     imdb.dbo.movie_companies AS mc,&#13;&#10;     imdb.dbo.role_type AS rt,&#13;&#10;     imdb.dbo.title AS t&#13;&#10;WHERE ci.note LIKE ''%(voice)%''&#13;&#10;  AND ci.note LIKE ''%(uncredited)%''&#13;&#10;  AND cn.country_code = ''[it]''&#13;&#10;  AND rt.role = ''producer''&#13;&#10;  AND t.production_year &gt; 1980&#13;&#10;  AND t.id = mc.movie_id&#13;&#10;  AND t.id = ci.movie_id&#13;&#10;  AND ci.movie_id = mc.movie_id&#13;&#10;  AND chn.id = ci.person_role_id&#13;&#10;  AND rt.id = ci.role_id&#13;&#10;  AND cn.id = mc.company_id&#13;&#10;  AND ct.id = mc.company_type_id" StatementType="SELECT" QueryHash="0xA652FA9D34608ADC" QueryPlanHash="0x18D3FD8C3FC6720B" RetrievedFromCache="false" SecurityPolicyApplied="false">
+        <StmtSimple StatementCompId="1" StatementEstRows="1" StatementId="1" StatementOptmLevel="FULL" StatementOptmEarlyAbortReason="TimeOut" CardinalityEstimationModelVersion="150" StatementSubTreeCost="15.5369" StatementText="&#13;&#10;SELECT MIN(chn.name) AS uncredited_voiced_character,&#13;&#10;       MIN(t.title) AS movie&#13;&#10;FROM imdb.dbo.char_name AS chn,&#13;&#10;     imdb.dbo.cast_info AS ci,&#13;&#10;     imdb.dbo.company_name AS cn,&#13;&#10;     imdb.dbo.company_type AS ct,&#13;&#10;     imdb.dbo.movie_companies AS mc,&#13;&#10;     imdb.dbo.role_type AS rt,&#13;&#10;     imdb.dbo.title AS t&#13;&#10;WHERE ci.note LIKE ''%(voice)%''&#13;&#10;  AND ci.note LIKE ''%(uncredited)%''&#13;&#10;  AND cn.country_code = ''[kr]''&#13;&#10;  AND rt.role = ''director''&#13;&#10;  AND t.production_year &gt; 1912&#13;&#10;  AND t.id = mc.movie_id&#13;&#10;  AND t.id = ci.movie_id&#13;&#10;  AND ci.movie_id = mc.movie_id&#13;&#10;  AND chn.id = ci.person_role_id&#13;&#10;  AND rt.id = ci.role_id&#13;&#10;  AND cn.id = mc.company_id&#13;&#10;  AND ct.id = mc.company_type_id" StatementType="SELECT" QueryHash="0xA652FA9D34608ADC" QueryPlanHash="0x18D3FD8C3FC6720B" RetrievedFromCache="false" SecurityPolicyApplied="false">
           <StatementSetOptions ANSI_NULLS="true" ANSI_PADDING="true" ANSI_WARNINGS="true" ARITHABORT="true" CONCAT_NULL_YIELDS_NULL="true" NUMERIC_ROUNDABORT="false" QUOTED_IDENTIFIER="true"/>
           <QueryPlan NonParallelPlanReason="NoParallelPlansInDesktopOrExpressEdition" CachedPlanSize="264" CompileTime="490" CompileCPU="375" CompileMemory="4496">
             <MissingIndexes>
@@ -183,7 +183,7 @@ WHERE ci.note LIKE '%(voice)%'
                               </IndexScan>
                             </RelOp>
                             <Predicate>
-                              <ScalarOperator ScalarString="[imdb].[dbo].[role_type].[role] as [rt].[role]=''producer''">
+                              <ScalarOperator ScalarString="[imdb].[dbo].[role_type].[role] as [rt].[role]=''director''">
                                 <Compare CompareOp="EQ">
                                   <ScalarOperator>
                                     <Identifier>
@@ -191,7 +191,7 @@ WHERE ci.note LIKE '%(voice)%'
                                     </Identifier>
                                   </ScalarOperator>
                                   <ScalarOperator>
-                                    <Const ConstValue="''producer''"/>
+                                    <Const ConstValue="''director''"/>
                                   </ScalarOperator>
                                 </Compare>
                               </ScalarOperator>
@@ -315,7 +315,7 @@ WHERE ci.note LIKE '%(voice)%'
                                               </IndexScan>
                                             </RelOp>
                                             <Predicate>
-                                              <ScalarOperator ScalarString="[imdb].[dbo].[company_name].[country_code] as [cn].[country_code]=''[it]''">
+                                              <ScalarOperator ScalarString="[imdb].[dbo].[company_name].[country_code] as [cn].[country_code]=''[kr]''">
                                                 <Compare CompareOp="EQ">
                                                   <ScalarOperator>
                                                     <Identifier>
@@ -323,7 +323,7 @@ WHERE ci.note LIKE '%(voice)%'
                                                     </Identifier>
                                                   </ScalarOperator>
                                                   <ScalarOperator>
-                                                    <Const ConstValue="''[it]''"/>
+                                                    <Const ConstValue="''[kr]''"/>
                                                   </ScalarOperator>
                                                 </Compare>
                                               </ScalarOperator>
@@ -502,7 +502,7 @@ WHERE ci.note LIKE '%(voice)%'
                                 </DefinedValues>
                                 <Object Database="[imdb]" Schema="[dbo]" Table="[title]" Index="[CCI_title]" Alias="[t]" IndexKind="Clustered" Storage="ColumnStore"/>
                                 <Predicate>
-                                  <ScalarOperator ScalarString="[imdb].[dbo].[title].[production_year] as [t].[production_year]&gt;(1980) AND PROBE([Opt_Bitmap1193],[imdb].[dbo].[title].[id] as [t].[id])">
+                                  <ScalarOperator ScalarString="[imdb].[dbo].[title].[production_year] as [t].[production_year]&gt;(1912) AND PROBE([Opt_Bitmap1193],[imdb].[dbo].[title].[id] as [t].[id])">
                                     <Logical Operation="AND">
                                       <ScalarOperator>
                                         <Compare CompareOp="GT">
@@ -512,7 +512,7 @@ WHERE ci.note LIKE '%(voice)%'
                                             </Identifier>
                                           </ScalarOperator>
                                           <ScalarOperator>
-                                            <Const ConstValue="(1980)"/>
+                                            <Const ConstValue="(1912)"/>
                                           </ScalarOperator>
                                         </Compare>
                                       </ScalarOperator>

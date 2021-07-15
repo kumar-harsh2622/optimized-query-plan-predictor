@@ -5,3 +5,5 @@ tree2vec
 abc.sqlplan
 convert_data.py
 imdb.tgz
+ast2vec
+images
