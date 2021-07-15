@@ -1,0 +1,1 @@
+[{"type": "Merge Join", "children": [{"type": "Nested Loops", "children": [{"type": "Hash Match", "children": [{"type": "Hash Match", "children": [{"type": "Hash Match", "children": [{"type": "Hash Match"}]}]}]}]}]}]

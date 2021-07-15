@@ -1,0 +1,17 @@
+{
+  "Merge Join": 1,
+  "Nested Loops": 1,
+  "Merge Join:Nested Loops": 1,
+  "Hash Match": 4,
+  "Nested Loops:Hash Match": 3,
+  "Merge Join:Hash Match": 2,
+  "Merge Join:Nested Loops:Hash Match": 3,
+  "Hash Match:Hash Match": 6,
+  "Nested Loops:Hash Match:Hash Match": 6,
+  "Merge Join:Hash Match:Hash Match": 5,
+  "Hash Match:Hash Match:Hash Match": 4,
+  "depth": 6.0,
+  "depth_avg": 6.0,
+  "chars_length_avg": 10.333333333333334,
+  "chars_length_max": 12.0
+}

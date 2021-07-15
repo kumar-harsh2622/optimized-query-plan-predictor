@@ -1,0 +1,1 @@
+{"Merge Join": 1, "Hash Match": 5, "Merge Join:Hash Match": 3, "Hash Match:Hash Match": 9, "Merge Join:Hash Match:Hash Match": 8, "Hash Match:Hash Match:Hash Match": 10, "depth": 6.0, "depth_avg": 6.0, "chars_length_avg": 10.0, "chars_length_max": 10.0}

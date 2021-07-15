@@ -1,0 +1,26 @@
+[
+  {
+    "type": "Hash Match",
+    "children": [
+      {
+        "type": "Hash Match",
+        "children": [
+          {
+            "type": "Hash Match",
+            "children": [
+              {
+                "type": "Hash Match",
+                "children": [
+                  {
+                    "type": "Hash Match",
+                    "children": [{ "type": "Hash Match" }]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+]
