@@ -11,8 +11,7 @@ FROM imdb.dbo.aka_name AS an,
      imdb.dbo.title AS t
 WHERE cn.country_code ='[pt]'
   AND k.keyword ='character-name-in-title'
-  AND t.episode_nr >= 4803
-  AND t.episode_nr < 56457
+  AND t.episode_nr < 7178
   AND an.person_id = n.id
   AND n.id = ci.person_id
   AND ci.movie_id = t.id

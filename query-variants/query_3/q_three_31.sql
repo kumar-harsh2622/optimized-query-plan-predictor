@@ -1,7 +1,7 @@
 
 SELECT MIN(cn.name) AS producing_company,
        MIN(miidx.info) AS rating,
-       MIN(t.title) AS movie_about_winning
+       MIN(t.title) AS movie
 FROM imdb.dbo.company_name AS cn,
      imdb.dbo.company_type AS ct,
      imdb.dbo.info_type AS it,
@@ -11,14 +11,11 @@ FROM imdb.dbo.company_name AS cn,
      imdb.dbo.movie_info AS mi,
      imdb.dbo.movie_info_idx AS miidx,
      imdb.dbo.title AS t
-WHERE cn.country_code ='[it]'
-  AND ct.kind ='miscellaneous companies'
-  AND it.info ='books'
+WHERE cn.country_code ='[no]'
+  AND ct.kind ='special effects companies'
+  AND it.info ='rentals'
   AND it2.info ='release dates'
-  AND kt.kind ='episode'
-  AND t.title != ''
-  AND (t.title LIKE '%Champion%'
-       OR t.title LIKE '%Loser%')
+  AND kt.kind ='tv mini series'
   AND mi.movie_id = t.id
   AND it2.id = mi.info_type_id
   AND kt.id = t.kind_id

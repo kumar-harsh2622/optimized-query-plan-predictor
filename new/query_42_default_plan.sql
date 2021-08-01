@@ -20,7 +20,7 @@ WHERE ci.note LIKE '%(voice)%'
   AND rt.id = ci.role_id
   AND cn.id = mc.company_id
   AND ct.id = mc.company_type_id
-  OPTION( USE PLAN N'<?xml version="1.0" encoding="utf-16"?>
+  OPTION( MAXDOP 1,USE PLAN N'<?xml version="1.0" encoding="utf-16"?>
 <ShowPlanXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Version="1.539" Build="15.0.2000.5" xmlns="http://schemas.microsoft.com/sqlserver/2004/07/showplan">
   <BatchSequence>
     <Batch>

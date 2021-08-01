@@ -11,7 +11,7 @@ FROM imdb.dbo.company_name AS cn,
      imdb.dbo.movie_info AS mi,
      imdb.dbo.movie_info_idx AS miidx,
      imdb.dbo.title AS t
-WHERE cn.country_code ='[az]'
+WHERE cn.country_code ='[as]'
   AND ct.kind ='production companies'
   AND it.info ='plot'
   AND it2.info ='release dates'

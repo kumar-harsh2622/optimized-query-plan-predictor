@@ -11,11 +11,11 @@ FROM imdb.dbo.company_name AS cn,
      imdb.dbo.movie_info AS mi,
      imdb.dbo.movie_info_idx AS miidx,
      imdb.dbo.title AS t
-WHERE cn.country_code ='[pl]'
-  AND ct.kind ='special effects companies'
-  AND it.info ='plot'
+WHERE cn.country_code ='[az]'
+  AND ct.kind ='distributors'
+  AND it.info ='trivia'
   AND it2.info ='release dates'
-  AND kt.kind ='tv series'
+  AND kt.kind ='episode'
   AND mi.movie_id = t.id
   AND it2.id = mi.info_type_id
   AND kt.id = t.kind_id

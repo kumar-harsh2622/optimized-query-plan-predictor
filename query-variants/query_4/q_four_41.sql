@@ -1,5 +1,4 @@
 
-  
 SELECT MIN(an.name) AS cool_actor_pseudonym,
        MIN(t.title) AS series_named_after_char
 FROM imdb.dbo.aka_name AS an,
@@ -10,10 +9,9 @@ FROM imdb.dbo.aka_name AS an,
      imdb.dbo.movie_keyword AS mk,
      imdb.dbo.name AS n,
      imdb.dbo.title AS t
-WHERE cn.country_code ='[it]'
+WHERE cn.country_code ='[by]'
   AND k.keyword ='character-name-in-title'
-  AND t.episode_nr >= 4175
-  AND t.episode_nr < 77530
+  AND t.episode_nr < 2216
   AND an.person_id = n.id
   AND n.id = ci.person_id
   AND ci.movie_id = t.id

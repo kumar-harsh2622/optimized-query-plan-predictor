@@ -9,9 +9,9 @@ FROM imdb.dbo.aka_name AS an,
      imdb.dbo.movie_keyword AS mk,
      imdb.dbo.name AS n,
      imdb.dbo.title AS t
-WHERE cn.country_code ='[ps]'
+WHERE cn.country_code ='[lk]'
   AND k.keyword ='character-name-in-title'
-  AND t.episode_nr < 80
+  AND t.episode_nr < 9408
   AND an.person_id = n.id
   AND n.id = ci.person_id
   AND ci.movie_id = t.id

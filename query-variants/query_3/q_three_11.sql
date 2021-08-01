@@ -11,9 +11,9 @@ FROM imdb.dbo.company_name AS cn,
      imdb.dbo.movie_info AS mi,
      imdb.dbo.movie_info_idx AS miidx,
      imdb.dbo.title AS t
-WHERE cn.country_code ='[om]'
-  AND ct.kind ='special effects companies'
-  AND it.info ='article'
+WHERE cn.country_code ='[az]'
+  AND ct.kind ='miscellaneous companies'
+  AND it.info ='books'
   AND it2.info ='release dates'
   AND kt.kind ='video movie'
   AND mi.movie_id = t.id

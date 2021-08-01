@@ -20,15 +20,15 @@ WHERE ci.note LIKE '%(voice)%'
   AND rt.id = ci.role_id
   AND cn.id = mc.company_id
   AND ct.id = mc.company_type_id
-  OPTION( USE PLAN N'<ShowPlanXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.microsoft.com/sqlserver/2004/07/showplan" Version="1.539" Build="15.0.2000.5">
+  OPTION( MAXDOP 1, USE PLAN N'<ShowPlanXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.microsoft.com/sqlserver/2004/07/showplan" Version="1.539" Build="15.0.2000.5">
   <BatchSequence>
     <Batch>
       <Statements>
-        <StmtSimple StatementCompId="1" StatementEstRows="1" StatementId="1" StatementOptmLevel="FULL" StatementOptmEarlyAbortReason="TimeOut" CardinalityEstimationModelVersion="150" StatementSubTreeCost="15.5369" StatementText="&#13;&#10;SELECT MIN(chn.name) AS uncredited_voiced_character,&#13;&#10;       MIN(t.title) AS movie&#13;&#10;FROM imdb.dbo.char_name AS chn,&#13;&#10;     imdb.dbo.cast_info AS ci,&#13;&#10;     imdb.dbo.company_name AS cn,&#13;&#10;     imdb.dbo.company_type AS ct,&#13;&#10;     imdb.dbo.movie_companies AS mc,&#13;&#10;     imdb.dbo.role_type AS rt,&#13;&#10;     imdb.dbo.title AS t&#13;&#10;WHERE ci.note LIKE ''%(voice)%''&#13;&#10;  AND ci.note LIKE ''%(uncredited)%''&#13;&#10;  AND cn.country_code = ''[pt]''&#13;&#10;  AND rt.role = ''designer''&#13;&#10;  AND t.production_year &gt; 1911&#13;&#10;  AND t.id = mc.movie_id&#13;&#10;  AND t.id = ci.movie_id&#13;&#10;  AND ci.movie_id = mc.movie_id&#13;&#10;  AND chn.id = ci.person_role_id&#13;&#10;  AND rt.id = ci.role_id&#13;&#10;  AND cn.id = mc.company_id&#13;&#10;  AND ct.id = mc.company_type_id" StatementType="SELECT" QueryHash="0xA652FA9D34608ADC" QueryPlanHash="0x18D3FD8C3FC6720B" RetrievedFromCache="false" SecurityPolicyApplied="false">
+        <StmtSimple StatementCompId="1" StatementEstRows="1" StatementId="1" StatementOptmLevel="FULL" StatementOptmEarlyAbortReason="TimeOut" CardinalityEstimationModelVersion="150" StatementSubTreeCost="15.5144" StatementText="&#13;&#10;SELECT MIN(chn.name) AS uncredited_voiced_character,&#13;&#10;       MIN(t.title) AS movie&#13;&#10;FROM imdb.dbo.char_name AS chn,&#13;&#10;     imdb.dbo.cast_info AS ci,&#13;&#10;     imdb.dbo.company_name AS cn,&#13;&#10;     imdb.dbo.company_type AS ct,&#13;&#10;     imdb.dbo.movie_companies AS mc,&#13;&#10;     imdb.dbo.role_type AS rt,&#13;&#10;     imdb.dbo.title AS t&#13;&#10;WHERE ci.note LIKE ''%(voice)%''&#13;&#10;  AND ci.note LIKE ''%(uncredited)%''&#13;&#10;  AND cn.country_code = ''[pt]''&#13;&#10;  AND rt.role = ''designer''&#13;&#10;  AND t.production_year &gt; 1911&#13;&#10;  AND t.id = mc.movie_id&#13;&#10;  AND t.id = ci.movie_id&#13;&#10;  AND ci.movie_id = mc.movie_id&#13;&#10;  AND chn.id = ci.person_role_id&#13;&#10;  AND rt.id = ci.role_id&#13;&#10;  AND cn.id = mc.company_id&#13;&#10;  AND ct.id = mc.company_type_id" StatementType="SELECT" QueryHash="0xA652FA9D34608ADC" QueryPlanHash="0x18D3FD8C3FC6720B" RetrievedFromCache="false" SecurityPolicyApplied="false">
           <StatementSetOptions ANSI_NULLS="true" ANSI_PADDING="true" ANSI_WARNINGS="true" ARITHABORT="true" CONCAT_NULL_YIELDS_NULL="true" NUMERIC_ROUNDABORT="false" QUOTED_IDENTIFIER="true"/>
-          <QueryPlan NonParallelPlanReason="NoParallelPlansInDesktopOrExpressEdition" CachedPlanSize="264" CompileTime="490" CompileCPU="375" CompileMemory="4496">
+          <QueryPlan NonParallelPlanReason="NoParallelPlansInDesktopOrExpressEdition" CachedPlanSize="264" CompileTime="75" CompileCPU="75" CompileMemory="4400">
             <MissingIndexes>
-              <MissingIndexGroup Impact="66.9049">
+              <MissingIndexGroup Impact="66.8929">
                 <MissingIndex Database="[imdb]" Schema="[dbo]" Table="[cast_info]">
                   <ColumnGroup Usage="EQUALITY">
                     <Column Name="[movie_id]" ColumnId="3"/>
@@ -40,7 +40,7 @@ WHERE ci.note LIKE '%(voice)%'
                   </ColumnGroup>
                 </MissingIndex>
               </MissingIndexGroup>
-              <MissingIndexGroup Impact="16.9199">
+              <MissingIndexGroup Impact="16.9408">
                 <MissingIndex Database="[imdb]" Schema="[dbo]" Table="[char_name]">
                   <ColumnGroup Usage="EQUALITY">
                     <Column Name="[id]" ColumnId="1"/>
@@ -50,7 +50,7 @@ WHERE ci.note LIKE '%(voice)%'
                   </ColumnGroup>
                 </MissingIndex>
               </MissingIndexGroup>
-              <MissingIndexGroup Impact="10.8536">
+              <MissingIndexGroup Impact="10.8555">
                 <MissingIndex Database="[imdb]" Schema="[dbo]" Table="[title]">
                   <ColumnGroup Usage="EQUALITY">
                     <Column Name="[id]" ColumnId="1"/>
@@ -64,8 +64,8 @@ WHERE ci.note LIKE '%(voice)%'
                 </MissingIndex>
               </MissingIndexGroup>
             </MissingIndexes>
-            <MemoryGrantInfo SerialRequiredMemory="6144" SerialDesiredMemory="12656" GrantedMemory="0" MaxUsedMemory="0"/>
-            <OptimizerHardwareDependentProperties EstimatedAvailableMemoryGrant="103769" EstimatedPagesCached="51884" EstimatedAvailableDegreeOfParallelism="4" MaxCompileMemory="1196152"/>
+            <MemoryGrantInfo SerialRequiredMemory="6144" SerialDesiredMemory="9952" GrantedMemory="0" MaxUsedMemory="0"/>
+            <OptimizerHardwareDependentProperties EstimatedAvailableMemoryGrant="103769" EstimatedPagesCached="51884" EstimatedAvailableDegreeOfParallelism="4" MaxCompileMemory="1354480"/>
             <OptimizerStatsUsage>
               <StatisticsInfo Database="[imdb]" Schema="[dbo]" Table="[role_type]" Statistics="[_WA_Sys_00000002_4316F928]" ModificationCount="0" SamplingPercent="100" LastUpdate="2021-06-15T22:51:17.57"/>
               <StatisticsInfo Database="[imdb]" Schema="[dbo]" Table="[cast_info]" Statistics="[cast_info_role_id]" ModificationCount="0" SamplingPercent="2.71761" LastUpdate="2021-06-19T00:56:53.76"/>
@@ -86,7 +86,7 @@ WHERE ci.note LIKE '%(voice)%'
             <TraceFlags IsCompileTime="true">
               <TraceFlag Value="8017" Scope="Global"/>
             </TraceFlags>
-            <RelOp AvgRowSize="438" EstimateCPU="2.18054E-05" EstimateIO="0" EstimateRebinds="0" EstimateRewinds="0" EstimatedExecutionMode="Row" EstimateRows="1" LogicalOp="Aggregate" NodeId="0" Parallel="false" PhysicalOp="Stream Aggregate" EstimatedTotalSubtreeCost="15.5369">
+            <RelOp AvgRowSize="438" EstimateCPU="1.30342E-05" EstimateIO="0" EstimateRebinds="0" EstimateRewinds="0" EstimatedExecutionMode="Row" EstimateRows="1" LogicalOp="Aggregate" NodeId="0" Parallel="false" PhysicalOp="Stream Aggregate" EstimatedTotalSubtreeCost="15.5144">
               <OutputList>
                 <ColumnReference Column="Expr1014"/>
                 <ColumnReference Column="Expr1015"/>
@@ -118,12 +118,12 @@ WHERE ci.note LIKE '%(voice)%'
                     </ScalarOperator>
                   </DefinedValue>
                 </DefinedValues>
-                <RelOp AvgRowSize="438" EstimateCPU="0.0179787" EstimateIO="0" EstimateRebinds="0" EstimateRewinds="0" EstimatedExecutionMode="Row" EstimateRows="35.509" LogicalOp="Inner Join" NodeId="1" Parallel="false" PhysicalOp="Hash Match" EstimatedTotalSubtreeCost="15.5369">
+                <RelOp AvgRowSize="438" EstimateCPU="0.0179006" EstimateIO="0" EstimateRebinds="0" EstimateRewinds="0" EstimatedExecutionMode="Row" EstimateRows="20.8903" LogicalOp="Inner Join" NodeId="1" Parallel="false" PhysicalOp="Hash Match" EstimatedTotalSubtreeCost="15.5144">
                   <OutputList>
                     <ColumnReference Database="[imdb]" Schema="[dbo]" Table="[char_name]" Alias="[chn]" Column="name"/>
                     <ColumnReference Database="[imdb]" Schema="[dbo]" Table="[title]" Alias="[t]" Column="title"/>
                   </OutputList>
-                  <MemoryFractions Input="0.004914" Output="0.004914"/>
+                  <MemoryFractions Input="0.00840336" Output="0.00840336"/>
                   <Hash>
                     <DefinedValues/>
                     <HashKeysBuild>
@@ -145,13 +145,13 @@ WHERE ci.note LIKE '%(voice)%'
                         <Object Database="[imdb]" Schema="[dbo]" Table="[company_type]" Index="[CCI_company_type]" Alias="[ct]" IndexKind="Clustered" Storage="ColumnStore"/>
                       </IndexScan>
                     </RelOp>
-                    <RelOp AvgRowSize="442" EstimateCPU="0.0195739" EstimateIO="0" EstimateRebinds="0" EstimateRewinds="0" EstimatedExecutionMode="Row" EstimateRows="35.509" LogicalOp="Inner Join" NodeId="3" Parallel="false" PhysicalOp="Hash Match" EstimatedTotalSubtreeCost="15.5158">
+                    <RelOp AvgRowSize="442" EstimateCPU="0.0188271" EstimateIO="0" EstimateRebinds="0" EstimateRewinds="0" EstimatedExecutionMode="Row" EstimateRows="20.8903" LogicalOp="Inner Join" NodeId="3" Parallel="false" PhysicalOp="Hash Match" EstimatedTotalSubtreeCost="15.4933">
                       <OutputList>
                         <ColumnReference Database="[imdb]" Schema="[dbo]" Table="[char_name]" Alias="[chn]" Column="name"/>
                         <ColumnReference Database="[imdb]" Schema="[dbo]" Table="[movie_companies]" Alias="[mc]" Column="company_type_id"/>
                         <ColumnReference Database="[imdb]" Schema="[dbo]" Table="[title]" Alias="[t]" Column="title"/>
                       </OutputList>
-                      <MemoryFractions Input="0.00982801" Output="0.00982801"/>
+                      <MemoryFractions Input="0.0147059" Output="0.0147059"/>
                       <Hash>
                         <DefinedValues/>
                         <HashKeysBuild>
@@ -198,18 +198,18 @@ WHERE ci.note LIKE '%(voice)%'
                             </Predicate>
                           </Filter>
                         </RelOp>
-                        <RelOp AvgRowSize="446" EstimateCPU="0.0074285" EstimateIO="0" EstimateRebinds="0" EstimateRewinds="0" EstimatedExecutionMode="Batch" EstimateRows="390.6" LogicalOp="Inner Join" NodeId="6" Parallel="false" PhysicalOp="Hash Match" EstimatedTotalSubtreeCost="15.493">
+                        <RelOp AvgRowSize="446" EstimateCPU="0.00527692" EstimateIO="0" EstimateRebinds="0" EstimateRewinds="0" EstimatedExecutionMode="Batch" EstimateRows="229.793" LogicalOp="Inner Join" NodeId="6" Parallel="false" PhysicalOp="Hash Match" EstimatedTotalSubtreeCost="15.4713">
                           <OutputList>
                             <ColumnReference Database="[imdb]" Schema="[dbo]" Table="[char_name]" Alias="[chn]" Column="name"/>
                             <ColumnReference Database="[imdb]" Schema="[dbo]" Table="[cast_info]" Alias="[ci]" Column="role_id"/>
                             <ColumnReference Database="[imdb]" Schema="[dbo]" Table="[movie_companies]" Alias="[mc]" Column="company_type_id"/>
                             <ColumnReference Database="[imdb]" Schema="[dbo]" Table="[title]" Alias="[t]" Column="title"/>
                           </OutputList>
-                          <MemoryFractions Input="0.985258" Output="0.985258"/>
+                          <MemoryFractions Input="0.976891" Output="0.976891"/>
                           <Hash BitmapCreator="true">
                             <DefinedValues>
                               <DefinedValue>
-                                <ColumnReference Column="Opt_Bitmap1193"/>
+                                <ColumnReference Column="Opt_Bitmap1180"/>
                               </DefinedValue>
                             </DefinedValues>
                             <HashKeysBuild>
@@ -218,18 +218,18 @@ WHERE ci.note LIKE '%(voice)%'
                             <HashKeysProbe>
                               <ColumnReference Database="[imdb]" Schema="[dbo]" Table="[title]" Alias="[t]" Column="id"/>
                             </HashKeysProbe>
-                            <RelOp AvgRowSize="273" EstimateCPU="0.00337281" EstimateIO="0" EstimateRebinds="0" EstimateRewinds="0" EstimatedExecutionMode="Batch" EstimateRows="417.811" LogicalOp="Inner Join" NodeId="7" Parallel="false" PhysicalOp="Hash Match" EstimatedTotalSubtreeCost="13.8029">
+                            <RelOp AvgRowSize="273" EstimateCPU="0.00280929" EstimateIO="0" EstimateRebinds="0" EstimateRewinds="0" EstimatedExecutionMode="Batch" EstimateRows="256.217" LogicalOp="Inner Join" NodeId="7" Parallel="false" PhysicalOp="Hash Match" EstimatedTotalSubtreeCost="13.7833">
                               <OutputList>
                                 <ColumnReference Database="[imdb]" Schema="[dbo]" Table="[char_name]" Alias="[chn]" Column="name"/>
                                 <ColumnReference Database="[imdb]" Schema="[dbo]" Table="[cast_info]" Alias="[ci]" Column="role_id"/>
                                 <ColumnReference Database="[imdb]" Schema="[dbo]" Table="[movie_companies]" Alias="[mc]" Column="movie_id"/>
                                 <ColumnReference Database="[imdb]" Schema="[dbo]" Table="[movie_companies]" Alias="[mc]" Column="company_type_id"/>
                               </OutputList>
-                              <MemoryFractions Input="0.921376" Output="0.921376"/>
+                              <MemoryFractions Input="0.897059" Output="0.897059"/>
                               <Hash BitmapCreator="true">
                                 <DefinedValues>
                                   <DefinedValue>
-                                    <ColumnReference Column="Opt_Bitmap1195"/>
+                                    <ColumnReference Column="Opt_Bitmap1182"/>
                                   </DefinedValue>
                                 </DefinedValues>
                                 <HashKeysBuild>
@@ -254,18 +254,18 @@ WHERE ci.note LIKE '%(voice)%'
                                     </Compare>
                                   </ScalarOperator>
                                 </ProbeResidual>
-                                <RelOp AvgRowSize="27" EstimateCPU="0.0456828" EstimateIO="0" EstimateRebinds="0" EstimateRewinds="0" EstimatedExecutionMode="Batch" EstimateRows="922.882" LogicalOp="Inner Join" NodeId="8" Parallel="false" PhysicalOp="Hash Match" EstimatedTotalSubtreeCost="11.1702">
+                                <RelOp AvgRowSize="27" EstimateCPU="0.0287526" EstimateIO="0" EstimateRebinds="0" EstimateRewinds="0" EstimatedExecutionMode="Batch" EstimateRows="565.946" LogicalOp="Inner Join" NodeId="8" Parallel="false" PhysicalOp="Hash Match" EstimatedTotalSubtreeCost="11.1512">
                                   <OutputList>
                                     <ColumnReference Database="[imdb]" Schema="[dbo]" Table="[cast_info]" Alias="[ci]" Column="person_role_id"/>
                                     <ColumnReference Database="[imdb]" Schema="[dbo]" Table="[cast_info]" Alias="[ci]" Column="role_id"/>
                                     <ColumnReference Database="[imdb]" Schema="[dbo]" Table="[movie_companies]" Alias="[mc]" Column="movie_id"/>
                                     <ColumnReference Database="[imdb]" Schema="[dbo]" Table="[movie_companies]" Alias="[mc]" Column="company_type_id"/>
                                   </OutputList>
-                                  <MemoryFractions Input="0.867322" Output="0.867322"/>
+                                  <MemoryFractions Input="0.838235" Output="0.838235"/>
                                   <Hash BitmapCreator="true">
                                     <DefinedValues>
                                       <DefinedValue>
-                                        <ColumnReference Column="Opt_Bitmap1182"/>
+                                        <ColumnReference Column="Opt_Bitmap1169"/>
                                       </DefinedValue>
                                     </DefinedValues>
                                     <HashKeysBuild>
@@ -274,16 +274,16 @@ WHERE ci.note LIKE '%(voice)%'
                                     <HashKeysProbe>
                                       <ColumnReference Database="[imdb]" Schema="[dbo]" Table="[cast_info]" Alias="[ci]" Column="movie_id"/>
                                     </HashKeysProbe>
-                                    <RelOp AvgRowSize="15" EstimateCPU="0.0187123" EstimateIO="0" EstimateRebinds="0" EstimateRewinds="0" EstimatedExecutionMode="Batch" EstimateRows="37564.5" LogicalOp="Inner Join" NodeId="9" Parallel="false" PhysicalOp="Hash Match" EstimatedTotalSubtreeCost="0.769871">
+                                    <RelOp AvgRowSize="15" EstimateCPU="0.0166552" EstimateIO="0" EstimateRebinds="0" EstimateRewinds="0" EstimatedExecutionMode="Batch" EstimateRows="23036" LogicalOp="Inner Join" NodeId="9" Parallel="false" PhysicalOp="Hash Match" EstimatedTotalSubtreeCost="0.767814">
                                       <OutputList>
                                         <ColumnReference Database="[imdb]" Schema="[dbo]" Table="[movie_companies]" Alias="[mc]" Column="movie_id"/>
                                         <ColumnReference Database="[imdb]" Schema="[dbo]" Table="[movie_companies]" Alias="[mc]" Column="company_type_id"/>
                                       </OutputList>
-                                      <MemoryFractions Input="0.135135" Output="0.135135"/>
+                                      <MemoryFractions Input="0.165966" Output="0.165966"/>
                                       <Hash BitmapCreator="true">
                                         <DefinedValues>
                                           <DefinedValue>
-                                            <ColumnReference Column="Opt_Bitmap1155"/>
+                                            <ColumnReference Column="Opt_Bitmap1116"/>
                                           </DefinedValue>
                                         </DefinedValues>
                                         <HashKeysBuild>
@@ -292,7 +292,7 @@ WHERE ci.note LIKE '%(voice)%'
                                         <HashKeysProbe>
                                           <ColumnReference Database="[imdb]" Schema="[dbo]" Table="[movie_companies]" Alias="[mc]" Column="company_id"/>
                                         </HashKeysProbe>
-                                        <RelOp AvgRowSize="11" EstimateCPU="0.0112799" EstimateIO="0" EstimateRebinds="0" EstimateRewinds="0" EstimatedExecutionMode="Batch" EstimateRows="1971.63" LogicalOp="Filter" NodeId="10" Parallel="false" PhysicalOp="Filter" EstimatedTotalSubtreeCost="0.058048">
+                                        <RelOp AvgRowSize="11" EstimateCPU="0.0112799" EstimateIO="0" EstimateRebinds="0" EstimateRewinds="0" EstimatedExecutionMode="Batch" EstimateRows="1209.08" LogicalOp="Filter" NodeId="10" Parallel="false" PhysicalOp="Filter" EstimatedTotalSubtreeCost="0.058048">
                                           <OutputList>
                                             <ColumnReference Database="[imdb]" Schema="[dbo]" Table="[company_name]" Alias="[cn]" Column="id"/>
                                           </OutputList>
@@ -350,11 +350,11 @@ WHERE ci.note LIKE '%(voice)%'
                                             </DefinedValues>
                                             <Object Database="[imdb]" Schema="[dbo]" Table="[movie_companies]" Index="[CCI_movie_companies]" Alias="[mc]" IndexKind="Clustered" Storage="ColumnStore"/>
                                             <Predicate>
-                                              <ScalarOperator ScalarString="PROBE([Opt_Bitmap1155],[imdb].[dbo].[movie_companies].[company_id] as [mc].[company_id])">
+                                              <ScalarOperator ScalarString="PROBE([Opt_Bitmap1116],[imdb].[dbo].[movie_companies].[company_id] as [mc].[company_id])">
                                                 <Intrinsic FunctionName="PROBE">
                                                   <ScalarOperator>
                                                     <Identifier>
-                                                      <ColumnReference Column="Opt_Bitmap1155"/>
+                                                      <ColumnReference Column="Opt_Bitmap1116"/>
                                                     </Identifier>
                                                   </ScalarOperator>
                                                   <ScalarOperator>
@@ -400,11 +400,11 @@ WHERE ci.note LIKE '%(voice)%'
                                             </DefinedValues>
                                             <Object Database="[imdb]" Schema="[dbo]" Table="[cast_info]" Index="[CCI_cast_info]" Alias="[ci]" IndexKind="Clustered" Storage="ColumnStore"/>
                                             <Predicate>
-                                              <ScalarOperator ScalarString="PROBE([Opt_Bitmap1182],[imdb].[dbo].[cast_info].[movie_id] as [ci].[movie_id])">
+                                              <ScalarOperator ScalarString="PROBE([Opt_Bitmap1169],[imdb].[dbo].[cast_info].[movie_id] as [ci].[movie_id])">
                                                 <Intrinsic FunctionName="PROBE">
                                                   <ScalarOperator>
                                                     <Identifier>
-                                                      <ColumnReference Column="Opt_Bitmap1182"/>
+                                                      <ColumnReference Column="Opt_Bitmap1169"/>
                                                     </Identifier>
                                                   </ScalarOperator>
                                                   <ScalarOperator>
@@ -467,11 +467,11 @@ WHERE ci.note LIKE '%(voice)%'
                                     </DefinedValues>
                                     <Object Database="[imdb]" Schema="[dbo]" Table="[char_name]" Index="[CCI_char_name]" Alias="[chn]" IndexKind="Clustered" Storage="ColumnStore"/>
                                     <Predicate>
-                                      <ScalarOperator ScalarString="PROBE([Opt_Bitmap1195],[imdb].[dbo].[char_name].[id] as [chn].[id])">
+                                      <ScalarOperator ScalarString="PROBE([Opt_Bitmap1182],[imdb].[dbo].[char_name].[id] as [chn].[id])">
                                         <Intrinsic FunctionName="PROBE">
                                           <ScalarOperator>
                                             <Identifier>
-                                              <ColumnReference Column="Opt_Bitmap1195"/>
+                                              <ColumnReference Column="Opt_Bitmap1182"/>
                                             </Identifier>
                                           </ScalarOperator>
                                           <ScalarOperator>
@@ -486,7 +486,7 @@ WHERE ci.note LIKE '%(voice)%'
                                 </RelOp>
                               </Hash>
                             </RelOp>
-                            <RelOp AvgRowSize="194" EstimateCPU="0.27813" EstimateIO="1.40461" EstimateRebinds="0" EstimateRewinds="0" EstimatedExecutionMode="Batch" EstimateRows="235.737" EstimatedRowsRead="252.831" LogicalOp="Clustered Index Scan" NodeId="19" Parallel="false" PhysicalOp="Clustered Index Scan" EstimatedTotalSubtreeCost="1.68274" TableCardinality="2528310">
+                            <RelOp AvgRowSize="194" EstimateCPU="0.27813" EstimateIO="1.40461" EstimateRebinds="0" EstimateRewinds="0" EstimatedExecutionMode="Batch" EstimateRows="226.155" EstimatedRowsRead="252.831" LogicalOp="Clustered Index Scan" NodeId="19" Parallel="false" PhysicalOp="Clustered Index Scan" EstimatedTotalSubtreeCost="1.68274" TableCardinality="2528310">
                               <OutputList>
                                 <ColumnReference Database="[imdb]" Schema="[dbo]" Table="[title]" Alias="[t]" Column="id"/>
                                 <ColumnReference Database="[imdb]" Schema="[dbo]" Table="[title]" Alias="[t]" Column="title"/>
@@ -502,7 +502,7 @@ WHERE ci.note LIKE '%(voice)%'
                                 </DefinedValues>
                                 <Object Database="[imdb]" Schema="[dbo]" Table="[title]" Index="[CCI_title]" Alias="[t]" IndexKind="Clustered" Storage="ColumnStore"/>
                                 <Predicate>
-                                  <ScalarOperator ScalarString="[imdb].[dbo].[title].[production_year] as [t].[production_year]&gt;(1911) AND PROBE([Opt_Bitmap1193],[imdb].[dbo].[title].[id] as [t].[id])">
+                                  <ScalarOperator ScalarString="[imdb].[dbo].[title].[production_year] as [t].[production_year]&gt;(1911) AND PROBE([Opt_Bitmap1180],[imdb].[dbo].[title].[id] as [t].[id])">
                                     <Logical Operation="AND">
                                       <ScalarOperator>
                                         <Compare CompareOp="GT">
@@ -520,7 +520,7 @@ WHERE ci.note LIKE '%(voice)%'
                                         <Intrinsic FunctionName="PROBE">
                                           <ScalarOperator>
                                             <Identifier>
-                                              <ColumnReference Column="Opt_Bitmap1193"/>
+                                              <ColumnReference Column="Opt_Bitmap1180"/>
                                             </Identifier>
                                           </ScalarOperator>
                                           <ScalarOperator>

@@ -11,11 +11,11 @@ FROM imdb.dbo.company_name AS cn,
      imdb.dbo.movie_info AS mi,
      imdb.dbo.movie_info_idx AS miidx,
      imdb.dbo.title AS t
-WHERE cn.country_code ='[lk]'
+WHERE cn.country_code ='[ps]'
   AND ct.kind ='distributors'
-  AND it.info ='novel'
+  AND it.info ='rating'
   AND it2.info ='release dates'
-  AND kt.kind ='video game'
+  AND kt.kind ='tv series'
   AND mi.movie_id = t.id
   AND it2.id = mi.info_type_id
   AND kt.id = t.kind_id

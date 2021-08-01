@@ -1,0 +1,53 @@
+[{
+    "type": "SELECT",
+    "children": [{
+        "type": "Stream Aggregate",
+        "children": [{
+            "type": "Hash Match",
+            "children": [
+                { "type": "Clustered Index Scan" },
+                {
+                    "type": "Hash Match",
+                    "children": [
+                        { "type": "Clustered Index Scan" },
+                        {
+                            "type": "Hash Match",
+                            "children": [
+                                { "type": "Clustered Index Scan" },
+                                {
+                                    "type": "Hash Match",
+                                    "children": [
+                                        { "type": "Clustered Index Scan" },
+                                        {
+                                            "type": "Hash Match",
+                                            "children": [{
+                                                    "type": "Hash Match",
+                                                    "children": [{
+                                                            "type": "Hash Match",
+                                                            "children": [
+                                                                { "type": "Clustered Index Scan" },
+                                                                {
+                                                                    "type": "Hash Match",
+                                                                    "children": [
+                                                                        { "type": "Clustered Index Scan" },
+                                                                        { "type": "Clustered Index Scan" }
+                                                                    ]
+                                                                }
+                                                            ]
+                                                        },
+                                                        { "type": "Clustered Index Scan" }
+                                                    ]
+                                                },
+                                                { "type": "Clustered Index Scan" }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }]
+    }]
+}]
