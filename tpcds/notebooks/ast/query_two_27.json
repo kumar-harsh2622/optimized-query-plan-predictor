@@ -1,0 +1,1 @@
+[{"type": "SELECT", "children": [{"type": "Sort", "children": [{"type": "Compute Scalar", "children": [{"type": "Hash Match", "children": [{"type": "Nested Loops", "children": [{"type": "Nested Loops", "children": [{"type": "Clustered Index Scan"}, {"type": "Clustered Index Seek"}]}, {"type": "Clustered Index Seek"}]}]}]}]}]}]
